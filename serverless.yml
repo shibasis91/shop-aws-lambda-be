@@ -1,0 +1,25 @@
+service: shop-aws-lambda-be
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: ap-south-1
+
+functions:
+  getProductsList:
+    handler: handlers/getProductsList.getProductsList
+    description: "Fetch all products"
+    events:
+      - httpApi:
+          path: /products
+          method: get
+
+  getProductsById:
+    handler: handlers/getProductsById.getProductsById
+    description: "Fetch product by Id"
+    events:
+      - httpApi:
+          path: /products/{id}
+          method: get
